@@ -1,5 +1,6 @@
 package br.com.test.swagger;
 
+import org.jboss.resteasy.reactive.MultipartForm;
 import org.jboss.resteasy.reactive.RestResponse;
 
 import javax.ws.rs.*;
@@ -9,8 +10,8 @@ import java.util.List;
 
 
 @Path("/fruit")
-//@Produces(MediaType.APPLICATION_JSON)
-//@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class FruitResource {
 
     List<Fruit> fruits = new ArrayList<>();
@@ -43,4 +44,14 @@ public class FruitResource {
         Car car = new Car("tes", "te","t");
         return RestResponse.ok(car);
     }
+
+    @POST
+    @Path("/upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sendMultipartData(@MultipartForm MultipartBody data){
+
+        System.out.println("");
+        return "dsada";
+    };
 }
